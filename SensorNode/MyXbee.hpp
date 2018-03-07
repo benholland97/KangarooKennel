@@ -1,4 +1,3 @@
-
 #include "Configuration.hpp"
 
 class MyXbee {
@@ -8,7 +7,7 @@ public:
 
   bool receiveMessage();
 
-  void setPayload(String msg);
+  void setPayload(uint8_t msg[]);
 
   void getMessage(char* data);
 
@@ -19,7 +18,7 @@ public:
 private:
   SoftwareSerial *mySerial;
   XBee xbee;
-  String payloadVal;
+  char payload[ZB_PACKET_SIZE];
   XBeeAddress64 destAddr;
   ZBTxRequest txReq;
   ZBTxStatusResponse txStatus;
@@ -29,6 +28,5 @@ private:
   ModemStatusResponse msr;
   byte checksum;
   int packetLength;
-  char rxMessageTemp[ZB_PACKET_SIZE];
-  char rxMessage[ZB_PACKET_SIZE];
+  char rxMessageTemp[ZB_PACKET_SIZE], rxMessage[ZB_PACKET_SIZE];
 };

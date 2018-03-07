@@ -4,21 +4,31 @@
 #include <Wire.h>
 #include <SparkFun_Si7021_Breakout_Library.h>
 
-//-----SENSOR PINS-----
+//---------------PINS--------------
+
+//-----T&H SENSOR-----
 #define PIN_PWR   A3
 #define PIN_GND   A2
 #define PIN_PWM1  6
 #define PIN_PWM2  7
 
-//-----SENSOR CONSTANTS------
+//-----PRESENCE SENSOR------
+#define PIN_RLD 5
+#define PIN_YLD 6 
+#define PIN_GLD 7
+#define PIN_DR 10
+#define PIN_MTN 11
 
 
+//-----XBEE-----
+#define PIN_RX  2
+#define PIN_TX  3
 
-//-----XBEE PINS-----
-#define PIN_RX  10
-#define PIN_TX  11
 
-//-------XBEE API CONSTANTS-------
+//--------------------XBEE CONSTANTS-------------
+#define ZB_PACKET_SIZE 0x50
+
+//-------------API------------
 #define TX_64_REQUEST 0x0
 #define TX_16_REQUEST 0x1
 #define AT_COMMAND_REQUEST 0x08
@@ -41,8 +51,7 @@
 #define AT_COMMAND_RESPONSE 0x88
 #define REMOTE_AT_COMMAND_RESPONSE 0x97
 
-
-//-------XBEE TX CONSTANTS-------
+//---------TX------------
 #define SUCCESS 0x0
 #define CCA_FAILURE 0x2
 #define INVALID_DESTINATION_ENDPOINT_SUCCESS 0x15
@@ -53,13 +62,11 @@
 #define ROUTE_NOT_FOUND 0x25
 #define PAYLOAD_TOO_LARGE 0x74
 
-//-------XBEE RX CONSTANTS-------
+//-----------RX------------
 #define ZB_PACKET_ACKNOWLEDGED 0x01
 #define ZB_BROADCAST_PACKET 0x02
-#define ZB_PACKET_SIZE 0x50
 
-
-//---------XBEE ADDRESS-----------
+//---------ADDRESS-----------
 #define ADDR_LOW   0x00000000
 #define ADDR_HIGH  0x00000000
 

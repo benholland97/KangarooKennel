@@ -6,22 +6,22 @@ MyXbee::MyXbee() {
   mySerial = new SoftwareSerial(PIN_RX, PIN_TX);
 
 //                  Tx variables
-  uint8_t payload[] = { 'T', 'R', 'E', 'V'};
-  payloadVal = "TREV";
+//  uint8_t payload[] = { 'B', 'O', 'O', 'T'};
+//  payloadVal = "BOOT";
   //Destination XBee address
   destAddr = XBeeAddress64(ADDR_LOW, ADDR_HIGH);
   //Transmission request
-  txReq = ZBTxRequest(destAddr, payload, sizeof(payload));
+//  txReq = ZBTxRequest(destAddr, payload, sizeof(payload));
   //Transmission response
   txStatus = ZBTxStatusResponse();
 
 //                  Rx variables
 
-//Variable to store receieved response
+  //Variable to store receieved response
   rxResp = XBeeResponse();
-//To store received data
+  //To store received data
   rxData = ZBRxResponse();
-//Modem status response
+  //Modem status response
   msr = ModemStatusResponse();
 
   memset(rxMessage,0,sizeof(rxMessage));
@@ -33,18 +33,23 @@ MyXbee::MyXbee() {
 MyXbee::~MyXbee() {
 }
 
-void MyXbee::setPayload(String msg) {
+void MyXbee::setPayload(uint8_t* msg) {
   Serial.println("Setting Payload");
-  uint8_t payload[msg.length()];
-  for (int i=0; i<msg.length();++i) {
-    payload[i] = msg.charAt(i);
-  }
-  txReq = ZBTxRequest(destAddr, payload, sizeof(payload));
+//  uint8_t payload[msg.length()];
+//  for (int i=0; i<msg.length();++i) {
+//    payload[i] = msg.charAt(i);
+//    Serial.println(msg.charAt(i));
+//  }
+  memset(payload,0,sizeof(payload));
+  strcpy(payload,msg);
+  txReq = ZBTxRequest(destAddr, payload, ZB_PACKET_SIZE);
   Serial.println("tx reg set");
 }
 
 bool MyXbee::sendMessage() {
   Serial.println("Sending message");
+//  uint8_t payload[] = { 'Y', 'O','Y', 'O' ,'Y', 'O'  };
+//  txReq = ZBTxRequest(destAddr, payload, sizeof(payload));
   xbee.send(txReq);
 
   if(xbee.readPacket(500)) {

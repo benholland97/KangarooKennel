@@ -11,7 +11,9 @@ void setup() {
   Serial.println("Setting up");
   delay(5000);
   xbee = new MyXbee();
-  xbee->setPayload("This is");
+
+  char msg[] = {"20.4,30.5,1,"};
+  xbee->setPayload(msg);
 
   sensor = new Sensor();
 }
@@ -19,17 +21,18 @@ void setup() {
 void loop() {
   Serial.flush();
 //  xbee->sendMessage();
-  delay(2000);
+//  delay(2000);
 
   sensor->getData();
 
-  Serial.print("Temp : ");
-  Serial.println(sensor->getTempC());
+//  Serial.print("Temp : ");
+//  Serial.println(sensor->getTempC());
  
-//  if (xbee->receiveMessage()) {
-//    xbee->getMessage(receivedData);
-//    Serial.println(receivedData);
-//  }
+  if (xbee->receiveMessage()) {
+    xbee->getMessage(receivedData);
+    Serial.println(receivedData);
+  }
 
 }
+
 
