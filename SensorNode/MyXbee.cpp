@@ -36,27 +36,67 @@ MyXbee::~MyXbee() {
 void MyXbee::setPayload(float temp, float humidity, float pres) {
 
   Serial.println("Setting Payload");
-  Serial.println(temp);
-  Serial.println(humidity);
-  Serial.println(pres);
+//  Serial.println(temp);
+//  Serial.println(humidity);
+//  Serial.println(pres);
 
-  byte *t = (byte *)&temp;
-  byte *h = (byte *)&humidity;
-  byte *p = (byte *)&pres;
+  char tString[6], hString[6], pString[6], msgString[40];
 
-  uint8_t mmsg[ZB_PACKET_SIZE];
+  memset(msgString,0,sizeof(msgString));
+  memset(tString,0,sizeof(tString));
+  memset(hString,0,sizeof(pString));
+  memset(pString,0,sizeof(hString));
+  
+  dtostrf(temp,5,2,tString);
+  dtostrf(humidity,5,2,hString);
+  dtostrf(pres,5,2,pString);
 
-  for (int i=0; i<4; ++i) {
-    mmsg[i] = t[i];
-    mmsg[i+4] = h[i];
-    mmsg[i+8] = p[i];
-  }
+  strcpy(msgString, tString);
+  strcat(msgString,",");
+  strcat(msgString, hString);
+  strcat(msgString,",");
+  strcat(msgString, pString);
+
+  Serial.println(tString);
+  Serial.println(hString);
+  Serial.println(pString);
+
+  Serial.println(msgString);
+
+  txReq = ZBTxRequest(destAddr, msgString, sizeof(msgString));
+
+//  Serial.println(tString);
+//  Serial.println(hString);
+//  Serial.println(pString);
+//
+//  for(int i=0; i<5; ++i) {
+//    msgString[i] = tString[i];
+//    msgString[i+5] = hString[i];
+//    msgString[i+10] = pString[i];
+//  }
+//
+//  msgString[4] = ',';
+//  msgString[9] = ',';
+  
+//  strcat(msgString,tString);
+//  strcat(msgString,hString);
+//  strcat(msgString,pString);
+
+ 
+//  byte *t = (byte *)&temp;
+//  byte *h = (byte *)&humidity;
+//  byte *p = (byte *)&pres;
+//
+//  uint8_t mmsg[ZB_PACKET_SIZE];
+//
+//  for (int i=0; i<4; ++i) {
+//    mmsg[i] = t[i];
+//    mmsg[i+4] = h[i];
+//    mmsg[i+8] = p[i];
+//  }
 
 //  payload[4] = ',';
 //  payload[9] = ',';
-
-
-  txReq = ZBTxRequest(destAddr, mmsg, sizeof(mmsg));
 
 //  uint8_t tArr[4];
 //
