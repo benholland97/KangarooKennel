@@ -25,12 +25,13 @@
 
 //-------------------SENSOR CONSANTS--------------
 #define TX_DELAY_ABS   5000
-#define TX_DELAY_PRES  3000
+#define TX_DELAY_PRES  1000
+#define PIR_TIMEOUT    10
 
 
 
 //--------------------XBEE CONSTANTS-------------
-#define ZB_PACKET_SIZE 0x50
+#define ZB_PACKET_SIZE 0xC
 
 //-------------API------------
 #define TX_64_REQUEST 0x0

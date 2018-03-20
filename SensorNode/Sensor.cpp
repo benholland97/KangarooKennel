@@ -31,8 +31,6 @@ void Sensor::getData() {
     digitalWrite(PIN_PWM2, LOW);
     state = LOW;
   }
-
-  delay(1000);
 }
 
 float Sensor::getTempFH() {

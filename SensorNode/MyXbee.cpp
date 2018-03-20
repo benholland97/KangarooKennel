@@ -33,23 +33,85 @@ MyXbee::MyXbee() {
 MyXbee::~MyXbee() {
 }
 
-void MyXbee::setPayload(uint8_t* msg) {
+void MyXbee::setPayload(float temp, float humidity, float pres) {
+
   Serial.println("Setting Payload");
-//  uint8_t payload[msg.length()];
-//  for (int i=0; i<msg.length();++i) {
-//    payload[i] = msg.charAt(i);
-//    Serial.println(msg.charAt(i));
+  Serial.println(temp);
+  Serial.println(humidity);
+  Serial.println(pres);
+
+  byte *t = (byte *)&temp;
+  byte *h = (byte *)&humidity;
+  byte *p = (byte *)&pres;
+
+  uint8_t mmsg[ZB_PACKET_SIZE];
+
+  for (int i=0; i<4; ++i) {
+    mmsg[i] = t[i];
+    mmsg[i+4] = h[i];
+    mmsg[i+8] = p[i];
+  }
+
+//  payload[4] = ',';
+//  payload[9] = ',';
+
+
+  txReq = ZBTxRequest(destAddr, mmsg, sizeof(mmsg));
+
+//  uint8_t tArr[4];
+//
+//  tArr = (uint8_t*)(&temp);
+//
+//  for (int i=0; i<4; ++i) {
+//    Serial.write(tArr[i]);
 //  }
-  memset(payload,0,sizeof(payload));
-  strcpy(payload,msg);
-  txReq = ZBTxRequest(destAddr, payload, ZB_PACKET_SIZE);
+//
+//  memset(payload,0,sizeof(payload));
+//  strcpy(payload,tArr);
+
+  
+//  union {
+//    float val;
+//    byte b[4];
+//  } t;
+//
+//  t.val = temp;
+////  h.val = humidity;
+////  p.val = pres;
+//  byte test_byte = 9;
+//
+//  payload[0] = test_byte;
+//  payload[1] = t.b[1];
+//  payload[2] = t.b[2];
+//  payload[3] = t.b[3];
+
+
+//  memset(payload,0,sizeof(char)*ZB_PACKET_SIZE);
+//  
+//  memcpy(payload, t.b, sizeof(t.b));
+//  memcpy(payload+sizeof(t.b), h.b, sizeof(h.b));
+//  memcpy(payload+sizeof(h.b), p.b, sizeof(p.b));
+
+//  Serial.print(t.b[0]);
+//
+//  for (int i=0; i<4; ++i) {
+//    payload[i] = t.b[i];
+//    payload[i+5] = h.b[i];
+//    payload[i+10] = p.b[i];
+//  }
+//
+//  payload[4] = ',';
+//  payload[9] = ',';
+
+//  memset(payload,0,sizeof(payload));
+//  strcpy(payload,msg);
+//  txReq = ZBTxRequest(destAddr, payload, ZB_PACKET_SIZE);
   Serial.println("tx reg set");
 }
 
 bool MyXbee::sendMessage() {
+  
   Serial.println("Sending message");
-//  uint8_t payload[] = { 'Y', 'O','Y', 'O' ,'Y', 'O'  };
-//  txReq = ZBTxRequest(destAddr, payload, sizeof(payload));
   xbee.send(txReq);
 
   if(xbee.readPacket(500)) {
