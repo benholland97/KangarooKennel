@@ -4,7 +4,7 @@
 #include <Wire.h>
 #include <SparkFun_Si7021_Breakout_Library.h>
 
-//---------------PINS--------------
+//-----------------------PINS------------------
 
 //-----T&H SENSOR-----
 #define PIN_PWR   A3
@@ -13,16 +13,20 @@
 #define PIN_PWM2  7
 
 //-----PRESENCE SENSOR------
-#define PIN_RLD 5
-#define PIN_YLD 6 
-#define PIN_GLD 7
+#define PIN_LED 4
 #define PIN_DR 10
-#define PIN_MTN 11
+#define PIN_PIR 11
 
 
 //-----XBEE-----
 #define PIN_RX  2
 #define PIN_TX  3
+
+
+//-------------------SENSOR CONSANTS--------------
+#define TX_DELAY_ABS   5000
+#define TX_DELAY_PRES  3000
+
 
 
 //--------------------XBEE CONSTANTS-------------
@@ -69,6 +73,8 @@
 //---------ADDRESS-----------
 #define ADDR_LOW   0x00000000
 #define ADDR_HIGH  0x00000000
+
+
 
 
 
