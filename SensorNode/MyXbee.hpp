@@ -7,7 +7,7 @@ public:
 
   bool receiveMessage();
 
-  void setPayload(uint8_t msg[]);
+  void setPayload(float temp, float humidity, float pres);
 
   void getMessage(char* data);
 
