@@ -3,7 +3,7 @@ var req;
 function reloadData()
 {
    var now = new Date();
-   url = 'connectdb.php?' + now.getTime();
+   url = 'ajax.php?' + now.getTime();
 
    try {
       req = new XMLHttpRequest();
@@ -37,6 +37,7 @@ function processReqChange()
       {
          // Set current data text
          dataDiv.innerHTML = req.responseText;
+	
 
          // Start new timer (1 min) 60000
          timeoutID = setTimeout('reloadData()', 1000);

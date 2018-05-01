@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-/*<?php
-include('/home/pi/functions/connectdb.php');
+<?php
+include '/home/pi/functions/connectdb.php';
+?>
 
-?>*/
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@ include('/home/pi/functions/connectdb.php');
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles-->
   <link href="css/sb-admin.css" rel="stylesheet">
-  <script type="text/javascript" src="/var/www/html/kangaru/live.js"></script>
+  <script type="text/javascript" src="live.js"></script>
 </head>
 
 <body onload="reloadData()" class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -28,14 +28,14 @@ include('/home/pi/functions/connectdb.php');
   <!-- Navigation-->
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.php">Tempi</a>
+    <a class="navbar-brand" href="index.html">Tempi</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.php">
+          <a class="nav-link" href="index.html">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
@@ -89,53 +89,15 @@ include('/home/pi/functions/connectdb.php');
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.php">Dashboard</a>        <!-- Link -->
+          <a href="index.html">Dashboard</a>        <!-- Link -->
         </li>
         <li class="breadcrumb-item active">My Dashboard</li>
       </ol>
 
       <!-- DataTables Card-->
-      <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-table"></i> Kennel Statistics</div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Kennel ID</th>
-                  <th>Occupied</th>
-                  <th>Temperature (°C)</th>
-                  <th>Humidity (%)</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>Kennel ID</th>
-                  <th>Occupied</th>
-                  <th>Temperature (°C)</th>
-                  <th>Humidity (%)</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td><?=$row['presence']?></td>
-                  <td></td>
-                  <td><?=$row['humi']?></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td><?=$row['presence']?></td>
-                  <td><?=$row['temp']?></td>
-                  <td><?=$row['humi']?></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="card-footer small text-muted">Updated <?=$row['time']?></div>
-      </div>
+      <div id="currentData"></div>
+
+
     </div>
 
     <!-- /.container-fluid-->
@@ -183,6 +145,7 @@ include('/home/pi/functions/connectdb.php');
     <!-- Custom scripts for this page-->
     <script src="js/sb-admin-datatables.min.js"></script>
     <script src="js/sb-admin-charts.min.js"></script>
+
   </div>
 </body>
 
