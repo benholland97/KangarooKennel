@@ -44,7 +44,11 @@ function updateTable() {
 				data: { Mode: 'kenData', Kennel: i },			//Send params to get different data 
 				success: function(data) {
 					console.log(data);
-
+					//conditional formatting 
+					if (parseFloat(data[5]) > 25) {
+						console.log("exceeded temp");
+						$($temp).css('background-color', '#FFFF00');
+					}
 					$($pres).html(data[4]);
 					$($temp).html(data[2]);
 					$($humid).html(data[3]);
