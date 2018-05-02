@@ -45,54 +45,6 @@ function updateTable() {
 				success: function(data) {
 					console.log(data);
 
-// Temperature Conditional Formatting
-$('tbody tr td:nth-child(3)').each(
-
-	function() {
-			var	crithigh = 27,
-	     			warnhigh = 25,
-	        		warnlow = 12,
-	        		critlow = 10,
-	        		score = $(this).text();
-
-	      if (score >= crithigh) {
-	        $(this).toggleClass('criticalhigh');
-	    }
-	    else if (score < crithigh && score >= warnhigh) {
-	        $(this).toggleClass('warninghigh');
-	    }
-	   else if (score < warnlow && score >= critlow) {
-	        $(this).toggleClass('warninglow');
-	    }
-	    else if (score < critlow) {
-	        $(this).toggleClass('criticallow');
-	    }
-	    });
-
-			// Humidity Conditional Formatting
-			$('tbody tr td:nth-child(4)').each(
-
-				function() {
-						var	crithigh = 70,
-				     		warnhigh = 65,
-				        warnlow = 15,
-				        critlow = 10,
-				        score = $(this).text();
-
-				      if (score >= crithigh) {
-				        $(this).toggleClass('criticalhigh');
-				    }
-				    else if (score < crithigh && score >= warnhigh) {
-				        $(this).toggleClass('warninghigh');
-				    }
-				   else if (score < warnlow && score >= critlow) {
-				        $(this).toggleClass('warninglow');
-				    }
-				    else if (score < critlow) {
-				        $(this).toggleClass('criticallow');
-				    }
-				    });
-
 					$($pres).html(data[4]);
 					$($temp).html(data[2]);
 					$($humid).html(data[3]);
