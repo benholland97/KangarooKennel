@@ -65,11 +65,11 @@ function updateTable() {
 						
 						if (temp >= 27) {
 							console.log("exceeded high temp");
-							$($temp).css('background-color', '#ff8080');
+							$($temp).css('background-color', '#ff0000');
 						}
 						else if (temp >= 25 && temp < 27) {
 							console.log("warning high temp");
-							$($temp).css('background-color', '#ffff99');
+							$($temp).css('background-color', '#FFFF00');
 						}
 						else if (temp > 12 && temp < 25) {
 							console.log("normal temp");
@@ -77,11 +77,11 @@ function updateTable() {
 						}
 						else if (temp <= 12  && temp > 10) {
 							console.log("warning low temp");
-							$($temp).css('background-color', '#ffff99');
+							$($temp).css('background-color', '#FFFF00');
 						}
 						else if (temp <= 10) {
 							console.log("exceeded low temp");
-							$($temp).css('background-color', '#ff8080');
+							$($temp).css('background-color', '#ff0000');
 						}
 
 						//humidity conditional formatting 
@@ -90,11 +90,11 @@ function updateTable() {
 						
 						if (humid >= 70) {
 							console.log("exceeded high humid");
-							$($temp).css('background-color', '#ff8080');
+							$($temp).css('background-color', '#ff0000');
 						}
 						else if (humid < 70 && humid >= 65) {
 							console.log("warning high humid");
-							$($temp).css('background-color', '#ffff99');
+							$($temp).css('background-color', '#FFFF00');
 						}
 						else if (humid < 15 && humid < 65) {
 							console.log("normal humid");
@@ -102,11 +102,11 @@ function updateTable() {
 						}					
 						else if (humid <= 15 && humid > 10) {
 							console.log("warning low humid");
-							$($temp).css('background-color', '#ffff99');
+							$($temp).css('background-color', '#FFFF00');
 						}
 						else if (humid <= 10) {
 							console.log("exceeded low humid");
-							$($temp).css('background-color', '#ff8080');
+							$($temp).css('background-color', '#ff0000');
 						}
 					}
 					
