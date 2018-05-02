@@ -90,23 +90,23 @@ function updateTable() {
 						
 						if (humid >= 70) {
 							console.log("exceeded high humid");
-							$($temp).css('background-color', '#ff0000');
+							$($humid).css('background-color', '#ff0000');
 						}
 						else if (humid < 70 && humid >= 65) {
 							console.log("warning high humid");
-							$($temp).css('background-color', '#FFFF00');
+							$($humid).css('background-color', '#FFFF00');
 						}
 						else if (humid < 15 && humid < 65) {
 							console.log("normal humid");
-							$($temp).css('background-color', '#ffffff');
+							$($humid).css('background-color', '#ffffff');
 						}					
 						else if (humid <= 15 && humid > 10) {
 							console.log("warning low humid");
-							$($temp).css('background-color', '#FFFF00');
+							$($humid).css('background-color', '#FFFF00');
 						}
 						else if (humid <= 10) {
 							console.log("exceeded low humid");
-							$($temp).css('background-color', '#ff0000');
+							$($humid).css('background-color', '#ff0000');
 						}
 					}
 					
