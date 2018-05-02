@@ -106,10 +106,6 @@ function updateTable() {
 						}
 					}
 
-					if (parseFloat(data[2]) > 25) {
-						console.log("exceeded temp");
-						$($temp).css('background-color', '#FFFF00');
-					}
 					$($pres).html($presHtml);
 					$($temp).html(data[2]);
 					$($humid).html(data[3]);
