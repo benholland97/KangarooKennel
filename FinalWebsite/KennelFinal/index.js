@@ -49,10 +49,7 @@ function updateTable() {
 					if (parseFloat(data[1]) == 1) {
 						console.log("dog present");
 						
-
-						//temperature conditional formatting 
-						
-						
+						//temperature conditional formatting 				
 						if (parseFloat(data[2]) >= 27) {
 							console.log("exceeded high temp");
 							$($temp).css('background-color', '#ff8080');
