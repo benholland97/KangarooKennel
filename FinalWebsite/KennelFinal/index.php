@@ -66,7 +66,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
             <li>
-              <a href="#">Kennel 1</a>      <!-- Link -->
+              <a href="Kennel1.html">Kennel 1</a>      <!-- Link -->
             </li>
             <li>
               <a href="#">Kennel 2</a>      <!-- Link -->
