@@ -45,7 +45,11 @@ function updateTable() {
 				data: { Mode: 'kenData', Kennel: i },			//Send params to get different data 
 				success: function(data) {
 					console.log(data);
-					//conditional formatting 
+					//conditional formatting data 
+					$($pres).html($presHtml);
+					$($temp).html(data[2]);
+					$($humid).html(data[3]);
+						
 					//only conditional format if dog present
 					if (parseFloat(data[4]) == 1) {
 						console.log("dog present");
@@ -105,11 +109,7 @@ function updateTable() {
 							$($temp).css('background-color', '#ff8080');
 						}
 					}
-
-					$($pres).html($presHtml);
-					$($temp).html(data[2]);
-					$($humid).html(data[3]);
-						
+					
 				}
 			});
 		})(i);
