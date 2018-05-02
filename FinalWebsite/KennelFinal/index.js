@@ -46,7 +46,7 @@ function updateTable() {
 					console.log(data);
 					
 					//only conditional format if dog present
-					if (parseFloat(data[1]) == 1) {
+					if (parseFloat(data[4]) == 1) {
 						console.log("dog present");
 						
 						//temperature conditional formatting 				
