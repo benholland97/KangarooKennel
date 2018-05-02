@@ -44,11 +44,59 @@ function updateTable() {
 				data: { Mode: 'kenData', Kennel: i },			//Send params to get different data 
 				success: function(data) {
 					console.log(data);
-					//conditional formatting 
-					if (parseFloat(data[5]) > 25) {
-						console.log("exceeded temp");
-						$($temp).css('background-color', '#FFFF00');
-					}
+					
+					//only conditional format if dog present
+					if (parseFloat(data[1]) == 1) {
+						console.log("dog present");
+						
+
+						//temperature conditional formatting 
+						
+						
+						if (parseFloat(data[2]) >= 27) {
+							console.log("exceeded high temp");
+							$($temp).css('background-color', '#ff8080');
+						}
+						else if (parseFloat(27 > data[2]) >= 25) {
+							console.log("warning high temp");
+							$($temp).css('background-color', '#ffff99');
+						}
+						else if (parseFloat(12 > data[2]) > 25) {
+							console.log("normal temp");
+							$($temp).css('background-color', '#ffffff');
+						}
+						else if (parseFloat(12 >= data[2]) > 10) {
+							console.log("warning low temp");
+							$($temp).css('background-color', '#ffff99');
+						}
+						else if (parseFloat(10 >= data[2])) {
+							console.log("exceeded low temp");
+							$($temp).css('background-color', '#ff8080');
+						}
+
+						//humidity conditional formatting 
+						if (parseFloat(data[3]) >= 70) {
+							console.log("exceeded high humid");
+							$($temp).css('background-color', '#ff8080');
+						}
+						else if (parseFloat(70 > data[3]) >= 65) {
+							console.log("warning high humid");
+							$($temp).css('background-color', '#ffff99');
+						}
+						else if (parseFloat(15 > data[3]) > 65) {
+							console.log("normal humid");
+							$($temp).css('background-color', '#ffffff');
+						}					
+						else if (parseFloat(15 >= data[3]) > 10) {
+							console.log("warning low humid");
+							$($temp).css('background-color', '#ffff99');
+						}
+						else if (parseFloat(10 >= data[3])) {
+							console.log("exceeded low humid");
+							$($temp).css('background-color', '#ff8080');
+						}
+							}
+					
 					$($pres).html(data[4]);
 					$($temp).html(data[2]);
 					$($humid).html(data[3]);
