@@ -1,0 +1,8 @@
+var dataTable = $('#example').DataTable({
+  rowCallback: function(row, data, index) {
+    console.log(row)
+    if (data[3]== '0' && data[4]!='0') {
+      $(row).find('td:eq(3)').addClass('color')
+    }   
+   }
+})
