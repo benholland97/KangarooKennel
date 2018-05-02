@@ -36,6 +36,7 @@ function updateTable() {
 			var $pres = '#pres'+i;
 			var $temp = '#temp'+i;
 			var $humid = '#humid'+i;
+			var $presHtml = '';
 
 			$.ajax({
 				url: 'load-data.php',
@@ -44,17 +45,25 @@ function updateTable() {
 				data: { Mode: 'kenData', Kennel: i },			//Send params to get different data 
 				success: function(data) {
 					console.log(data);
-					
+					//conditional formatting 
 					//only conditional format if dog present
 					if (parseFloat(data[4]) == 1) {
 						console.log("dog present");
+						if (parseInt(data[4]) == 0) {
+							$presHtml = "No";
+						} else if (parseInt(data[4]) == 1) {
+							$presHtml = "Yes";
+						}
+
+						//temperature conditional formatting 
 						
-						//temperature conditional formatting 				
-						if (parseFloat(data[2]) >= 27) {
+						var temp = parseFloat(data[2]); 
+						
+						if (temp >= 27) {
 							console.log("exceeded high temp");
 							$($temp).css('background-color', '#ff8080');
 						}
-						else if (parseFloat(27 > data[2]) >= 25) {
+						else if (temp >= 25 && temp < 27) {
 							console.log("warning high temp");
 							$($temp).css('background-color', '#ffff99');
 						}
@@ -92,9 +101,13 @@ function updateTable() {
 							console.log("exceeded low humid");
 							$($temp).css('background-color', '#ff8080');
 						}
-							}
-					
-					$($pres).html(data[4]);
+					}
+
+					if (parseFloat(data[2]) > 25) {
+						console.log("exceeded temp");
+						$($temp).css('background-color', '#FFFF00');
+					}
+					$($pres).html($presHtml);
 					$($temp).html(data[2]);
 					$($humid).html(data[3]);
 						
